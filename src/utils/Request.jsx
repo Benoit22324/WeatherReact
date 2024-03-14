@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { KeyToken } from './config';
 
 const Request = async ({city = undefined, lon = undefined, lat = undefined}) => {
     try {
-        const ApiKey = '3fd58321a4c187a7b56e5d953747d3d7';
+        const ApiKey = KeyToken;
         if (city !== undefined) {
-            const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + ApiKey);
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`);
             return response.data
         }
         else if (lon !== undefined && lat !== undefined) {

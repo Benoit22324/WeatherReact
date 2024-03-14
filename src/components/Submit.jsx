@@ -24,7 +24,7 @@ const Submit = () => {
 
     return (
         <>
-            <button onClick={search}>Rechercher</button>
+            <button onClick={search} style={{backgroundColor: '#24A8FF', marginLeft: '5px', padding: '5px'}}>Rechercher</button>
         </>
     )
 }

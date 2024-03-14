@@ -4,8 +4,10 @@ import Submit from "./Submit"
 const Form = () => {
     return (
         <>
-            <InputCity />
-            <Submit />
+            <div style={{display: 'flex', alignItems: 'center', marginLeft: '20px'}}>
+                <InputCity />
+                <Submit />
+            </div>
         </>
     )
 }

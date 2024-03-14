@@ -6,6 +6,7 @@ export const init = {
     mintemp: '',
     humidity: '',
     error: '',
+    status: '',
 }
 
 const WeatherReducer = (state, action) => {
@@ -19,10 +20,11 @@ const WeatherReducer = (state, action) => {
         case 'setWeather': return {
             ...state,
             city: action.payload.city,
-            temp: Math.floor((action.payload.temp - 273.15) * 100) / 100,
-            maxtemp: Math.floor((action.payload.maxtemp - 273.15) * 100) / 100,
-            mintemp: Math.floor((action.payload.mintemp - 273.15) * 100) / 100,
-            humidity: action.payload.humidity,
+            temp: Math.floor((action.payload.temp - 273.15) * 100) / 100 + '°C',
+            maxtemp: Math.floor((action.payload.maxtemp - 273.15) * 100) / 100 + '°C',
+            mintemp: Math.floor((action.payload.mintemp - 273.15) * 100) / 100 + '°C',
+            humidity: action.payload.humidity + '%',
+            status: 'set',
         }
 
         case 'setError': return {

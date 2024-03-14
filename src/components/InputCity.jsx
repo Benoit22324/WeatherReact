@@ -8,7 +8,7 @@ const InputCity = () => {
             {
                 state.error !== '' && <p>{state.error}</p>
             }
-            <label>Entrez le nom d'une ville: <input type="text" value={state.input} onChange={(e) => dispatch({type: 'updateValue', payload: e.target.value})}/></label>
+            <label>Entrez le nom d'une ville: <input type="text" style={{padding: '5px', borderRadius: '5px'}} value={state.input} onChange={(e) => dispatch({type: 'updateValue', payload: e.target.value})}/></label>
         </>
     )
 }

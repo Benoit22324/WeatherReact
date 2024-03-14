@@ -6,8 +6,15 @@ const Submit = () => {
 
     const search = async () => {
         if (state.input !== '') {
-            const response = await Request(state.input);
-            if (typeof(response) !== 'string') {
+            let response = undefined;
+            if (state.input.trim().includes(' ')) {
+                response = await Request({lon: state.lon, lat: state.lat});
+            }
+            else {
+                response = await Request({city: state.input});
+            }
+
+            typeof(response) !== 'string' ?
                 dispatch({type: 'setWeather', payload: {
                     city: response.name,
                     temp: response.main.temp,
@@ -15,10 +22,8 @@ const Submit = () => {
                     maxtemp: response.main.temp_max,
                     humidity: response.main.humidity,
                 }})
-            }
-            else {
+            :
                 dispatch({type: 'setError', payload: response})
-            }
         }
     }
 

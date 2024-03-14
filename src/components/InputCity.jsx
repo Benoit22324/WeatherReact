@@ -9,7 +9,7 @@ const InputCity = () => {
         if (state.input.trim().length > 2) {
             const response = await Suggest(state.input)
             
-            if (response !== 'Erreur de suggestion') dispatch({type: 'setSuggestion', payload: response})
+            if (typeof(response) !== 'string') dispatch({type: 'setSuggestion', payload: response})
             else dispatch({type: 'setError', payload: response})
         }
     }

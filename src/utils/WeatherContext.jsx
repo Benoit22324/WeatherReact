@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import WeatherReducer from "../reducer/WeatherReducer";
-import init from '../reducer/WeatherReducer'
+import {init} from '../reducer/WeatherReducer'
 
 const WeatherContext = createContext();
 

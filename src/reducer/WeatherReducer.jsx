@@ -7,7 +7,9 @@ export const init = {
     humidity: '',
     error: '',
     status: '',
-    suggestion: '',
+    suggestion: [],
+    lon: 0,
+    lat: 0,
 }
 
 const WeatherReducer = (state, action) => {
@@ -27,7 +29,9 @@ const WeatherReducer = (state, action) => {
             humidity: action.payload.humidity + '%',
             status: 'set',
             input: '',
-            suggestion: '',
+            suggestion: [],
+            lon: 0,
+            lat: 0
         }
 
         case 'setSuggestion': return {
@@ -37,8 +41,10 @@ const WeatherReducer = (state, action) => {
 
         case 'useSuggestion': return {
             ...state,
-            input: state.suggestion,
-            suggestion: ''
+            input: action.payload.city,
+            lon: action.payload.lon,
+            lat: action.payload.lat,
+            suggestion: []
         }
 
         case 'setError': return {

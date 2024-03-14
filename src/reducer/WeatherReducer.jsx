@@ -7,6 +7,7 @@ export const init = {
     humidity: '',
     error: '',
     status: '',
+    suggestion: '',
 }
 
 const WeatherReducer = (state, action) => {
@@ -25,6 +26,19 @@ const WeatherReducer = (state, action) => {
             mintemp: Math.floor((action.payload.mintemp - 273.15) * 100) / 100 + '°C',
             humidity: action.payload.humidity + '%',
             status: 'set',
+            input: '',
+            suggestion: '',
+        }
+
+        case 'setSuggestion': return {
+            ...state,
+            suggestion: action.payload
+        }
+
+        case 'useSuggestion': return {
+            ...state,
+            input: state.suggestion,
+            suggestion: ''
         }
 
         case 'setError': return {

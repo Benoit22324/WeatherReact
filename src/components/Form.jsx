@@ -3,7 +3,7 @@ import Submit from "./Submit"
 import { useWeatherContext } from "../utils/WeatherContext"
 
 const Form = () => {
-    const [state] = useWeatherContext();
+    const [state, dispatch] = useWeatherContext();
 
     return (
         <>
@@ -13,6 +13,9 @@ const Form = () => {
             <div style={{display: 'flex', alignItems: 'center', marginLeft: '20px'}}>
                 <InputCity />
                 <Submit />
+                {
+                    state.suggestion !== '' && <p onClick={() => dispatch({type: 'useSuggestion'})} style={{cursor: 'pointer', marginLeft: '15px'}}>{state.suggestion}</p>
+                }
             </div>
         </>
     )

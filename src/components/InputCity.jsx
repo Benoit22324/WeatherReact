@@ -1,23 +1,17 @@
 import { useWeatherContext } from "../utils/WeatherContext";
-import axios from "axios";
+import Suggest from "../utils/Suggest";
 
 const InputCity = () => {
     const [state, dispatch] = useWeatherContext();
 
-    const propos = async (word) => {
-        try {
-            const response = await axios.get('https://api-adresse.data.gouv.fr/search/?q=' + word + '&autocomplete=1')
-            const data = response.data.features
-            console.log(data[0].properties.city)
-        }
-        catch {
-            console.log('erreur de propos')
-        }
-    }
-
-    const update = (e) => {
+    const update = async (e) => {
         dispatch({type: 'updateValue', payload: e.target.value})
-        if (state.input.length > 2 && state.input !== '') propos(state.input)
+        if (state.input.trim().length > 2) {
+            const response = await Suggest(state.input)
+            
+            if (response !== 'Erreur de suggestion') dispatch({type: 'setSuggestion', payload: response})
+            else dispatch({type: 'setError', payload: response})
+        }
     }
 
     return (
